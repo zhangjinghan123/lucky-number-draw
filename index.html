@@ -77,8 +77,8 @@
         const drawButton = document.getElementById('drawButton');
         const drawnNumbersElement = document.getElementById('drawnNumbers');
         let drawnNumbers = [];
-        let isDrawing = false;
         let drawCount = 0;  // 记录抽取次数
+        let isDrawing = false;
 
         drawButton.addEventListener('click', () => {
             if (isDrawing || drawCount >= 10) return;  // 限制抽取次数为 10 次

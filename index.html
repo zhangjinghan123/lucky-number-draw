@@ -36,6 +36,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 18px;
+            margin: 10px;
         }
         .button:disabled {
             background: grey;
@@ -78,6 +79,7 @@
         <div id="time"></div>
         <div class="number" id="luckyNumber">?</div>
         <button class="button" id="drawButton">抽取幸运数字</button>
+        <button class="button" id="resetButton">重置</button>
         <div class="drawn-numbers" id="drawnNumbers"></div>
     </div>
 
@@ -92,11 +94,13 @@
 
         const luckyNumberElement = document.getElementById('luckyNumber');
         const drawButton = document.getElementById('drawButton');
+        const resetButton = document.getElementById('resetButton');
         const drawnNumbersElement = document.getElementById('drawnNumbers');
         let drawnNumbers = [];
         let isDrawing = false;
         let drawCount = 0;  // 记录抽取次数
 
+        // 抽取数字的逻辑
         drawButton.addEventListener('click', () => {
             if (isDrawing || drawCount >= 10) return;  // 限制抽取次数为 10 次
             isDrawing = true;
@@ -129,6 +133,16 @@
                     }
                 }
             }, 25);
+        });
+
+        // 重置按钮的逻辑
+        resetButton.addEventListener('click', () => {
+            // 清空已抽取的数字和抽取次数
+            drawnNumbers = [];
+            drawCount = 0;
+            luckyNumberElement.innerText = '?';
+            drawnNumbersElement.innerHTML = '';  // 清空显示的数字
+            drawButton.disabled = false;  // 重新启用抽取按钮
         });
     </script>
 </body>

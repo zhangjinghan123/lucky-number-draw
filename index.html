@@ -81,9 +81,9 @@
         let drawCount = 0;  // 记录抽取次数
 
         drawButton.addEventListener('click', () => {
-            if (isDrawing || drawCount >= 10) return;  // 限制抽取次数为 10 次
+            if (isDrawing || drawCount >= 9) return;  // 限制抽取次数为 9 次
             isDrawing = true;
-            drawButton.disabled = true;  // 禁用按钮，防止多次点击
+            drawButton.disabled = true;
 
             let count = 0;
             const interval = setInterval(() => {
@@ -94,6 +94,8 @@
 
                 if (count > 20) {
                     clearInterval(interval);
+                    isDrawing = false;
+                    drawButton.disabled = false;
                     drawnNumbers.push(randomNum);
                     drawCount++;  // 增加抽取次数
 
@@ -102,13 +104,10 @@
                     span.innerText = randomNum;
                     drawnNumbersElement.appendChild(span);
 
-                    // 检查是否达到10次抽取，禁用按钮
-                    if (drawCount >= 10) {
+                    // 检查是否达到9次抽取，禁用按钮
+                    if (drawCount >= 9) {
                         drawButton.disabled = true;
-                        alert('已达到最大抽取次数（10次）');
-                    } else {
-                        isDrawing = false;
-                        drawButton.disabled = false;  // 允许再次抽取
+                        alert('已达到最大抽取次数（9次）');
                     }
                 }
             }, 25);
